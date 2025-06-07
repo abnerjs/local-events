@@ -1,7 +1,5 @@
 import { Link } from '@tanstack/react-router'
 
-import ClerkHeader from '../integrations/clerk/header-user.tsx'
-
 export default function Header() {
   return (
     <header className="p-2 flex gap-2 bg-white text-black justify-between">
@@ -11,19 +9,11 @@ export default function Header() {
         </div>
 
         <div className="px-2 font-bold">
-          <Link to="/demo/clerk">Clerk</Link>
-        </div>
-
-        <div className="px-2 font-bold">
           <Link to="/demo/form/simple">Simple Form</Link>
         </div>
 
         <div className="px-2 font-bold">
           <Link to="/demo/form/address">Address Form</Link>
-        </div>
-
-        <div className="px-2 font-bold">
-          <Link to="/demo/sentry/testing">Sentry</Link>
         </div>
 
         <div className="px-2 font-bold">
@@ -42,10 +32,6 @@ export default function Header() {
           <Link to="/demo/start/api-request">Start - API Request</Link>
         </div>
       </nav>
-
-      <div>
-        <ClerkHeader />
-      </div>
     </header>
   )
 }

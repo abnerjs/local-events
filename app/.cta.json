@@ -9,9 +9,7 @@
   "framework": "react-cra",
   "chosenAddOns": [
     "biome",
-    "clerk",
     "form",
-    "sentry",
     "shadcn",
     "tRPC",
     "table",
