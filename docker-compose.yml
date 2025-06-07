@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    environment:
+      VITE_PUBLIC_API_URL: http://server:3001
+      # Adicione suas chaves do Clerk aqui (ex: VITE_CLERK_PUBLISHABLE_KEY)
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      # A URL de conexão DATABASE_URL vai usar as variáveis de ambiente do Bitnami
+      # As variáveis de ambiente do Bitnami são geralmente prefixadas com POSTGRESQL_
+      DATABASE_URL: postgres://docker:docker@db:5432/events_db
+      CLERK_SECRET_KEY: sua_chave_secreta_clerk
+      # Outras variáveis de ambiente
+
+  db:
+    # IMAGEM DO BITNAMI PARA POSTGRESQL
+    image: docker.io/bitnami/postgresql:17.5.0 # Use a versão que desejar (ex: 16.3.0)
+    ports:
+      - "5432:5432"
+    environment:
+      # Variáveis de ambiente específicas da imagem Bitnami para PostgreSQL
+      # Consulte a documentação da Bitnami para ver todas as opções
+      POSTGRESQL_USERNAME: docker          # Usuário do banco de dados
+      POSTGRESQL_PASSWORD: docker      # Senha do banco de dados
+      POSTGRESQL_DATABASE: events_db     # Nome do banco de dados
+      # Você pode adicionar outras variáveis Bitnami se precisar, ex:
+      # POSTGRESQL_PORT_NUMBER: 5432
+      # POSTGRESQL_VOLUME_DIR: /bitnami/postgresql/data # Default é /bitnami/postgresql/data
+    volumes:
+      - db_data:/bitnami/postgresql/data # O caminho padrão para dados na imagem Bitnami
+      # Se você tiver scripts SQL iniciais ou migrations, pode montá-los aqui,
+      # mas o local pode ser diferente para Bitnami. Consulte a documentação deles.
+      # Exemplo (verifique a imagem Bitnami para o local exato para scripts de inicialização):
+      # - ./server/db-init-scripts:/docker-entrypoint-initdb.d # Pode não ser este o caminho na Bitnami
+
+volumes:
+  db_data:

@@ -1,0 +1,20 @@
+{
+  "name": "local-events",
+  "version": "1.0.0",
+  "description": "Sistema de Gerenciamento de Eventos.",
+  "private": true,
+  "scripts": {
+    "dev:web": "npm run dev --workspace=web",
+    "build:web": "npm run build --workspace=web",
+    "dev:server": "npm run dev --workspace=server",
+    "build:server": "npm run build --workspace=server",
+    "dev": "npm run dev:server & npm run dev:web"
+  },
+  "workspaces": [
+    "web",
+    "server"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
