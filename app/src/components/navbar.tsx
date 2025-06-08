@@ -1,5 +1,4 @@
 import type * as React from "react";
-import { Icon } from "@iconify/react";
 
 import {
 	NavigationMenu,
@@ -53,7 +52,7 @@ const components: { title: string; to: string; description: string }[] = [
 
 export function Navbar() {
 	return (
-		<div className="flex items-center justify-between w-full">
+		<div className="flex px-8 py-4 items-center justify-between w-full">
 			<NavigationMenu viewport={false}>
 				<NavigationMenuList>
 					<NavigationMenuItem>
@@ -125,7 +124,7 @@ export function Navbar() {
 							asChild
 							className={navigationMenuTriggerStyle()}
 						>
-							<NavLink to="/docs">Docs</NavLink>
+							<NavLink to="/about">Sobre</NavLink>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
@@ -171,16 +170,12 @@ export function Navbar() {
 							className={navigationMenuTriggerStyle()}
 						>
 							<Link to="#" className="flex-row items-center gap-2">
-								<Icon
-									icon="fluent:dark-theme-20-filled"
-									className="size-5 text-zinc-950"
-								/>
-								Trocar tema
+								Desconectar
 							</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger className="bg-zinc-950 text-zinc-50 font-bold">
+						<NavigationMenuTrigger className="bg-zinc-950 text-zinc-50 font-bold hover:bg-zinc-800 hover:text-zinc-50 focus:bg-zinc-800 focus:text-zinc-50 data-[state=open]:!bg-zinc-800 data-[state=open]:text-zinc-50">
 							Abner J. Silva
 						</NavigationMenuTrigger>
 						<NavigationMenuContent>
